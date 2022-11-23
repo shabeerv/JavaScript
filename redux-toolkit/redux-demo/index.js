@@ -69,7 +69,7 @@ const reducer = (state = initialState, action) => {
 
 const store = createStore(reducer)
 console.log('Initial state', store.getState())
-const unsubscribe = store.subscribe(() => console.log('update state', store.getState()))
+const unsubscribe = store.subscribe(() => console.log('Updated state', store.getState()))
 
 const actions = bindActionCreators({orderCake, restockCake, orderIceCream, restockIceCream }, store.dispatch)
 actions.orderCake()

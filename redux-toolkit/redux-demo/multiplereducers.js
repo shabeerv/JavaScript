@@ -89,12 +89,15 @@ const iceCreamReducer = (state = initialIceCreamState, action) => {
     }
 }
 
-const rootReducer = c
+const rootReducer = combineReducers({
+    cake: cakeReducer,
+    iceCream: iceCreamReducer,
+})
 
-const store = createStore(reducer)
+const store = createStore(rootReducer)
 console.log('Initial state', store.getState())
 
-const unsubscribe = store.subscribe(() => console.log("Update state ", store.getState()))
+const unsubscribe = store.subscribe(() => console.log("Updated state ", store.getState()))
 const actions = bindActionCreators({ orderCake, restockCake, orderIceCream, restockIceCream }, store.dispatch)
 
 actions.orderCake()
