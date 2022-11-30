@@ -25,6 +25,8 @@ const MessageInput = ({ value }) => {
     return (
         <form className='Message' onSubmit={handleSubmit}>
             <input
+                key={activeUserId}
+                name='chat'
                 className='Message__input'
                 onChange={handleChange}
                 value={value}
