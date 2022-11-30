@@ -14,9 +14,7 @@ const messageSlice = createSlice({
             const { typing, activeUserId } = action.payload
             const allUserMsgs = state.listMessages[activeUserId]
             const number = +_.keys(allUserMsgs).pop() + 1;
-            
             state.listMessages = {
-                ...state,
                 [activeUserId]: {
                     ...allUserMsgs,
                     [number]: {
