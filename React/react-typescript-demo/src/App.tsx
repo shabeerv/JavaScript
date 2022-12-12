@@ -1,6 +1,9 @@
 import './App.css';
+import { UserContextProvider } from './components/context/UserContext';
+import { User } from './components/context/User';
 // import { Button } from './components/Button';
-import { Container } from './components/Container';
+// import { Container } from './components/Container';
+// import { LoggedIn } from './components/state/LoggedIn';
 // import { Input } from './components/Input';
 // import { Greet } from './components/Greet';
 // import { Heading } from './components/Heading';
@@ -9,6 +12,8 @@ import { Container } from './components/Container';
 // import { Greet } from './components/Greet';
 // import { Person } from './components/Person';
 // import { PersonList } from './components/PersonList';
+// import { ThemecontextProvider } from './components/context/ThemeContext';
+// import { Box } from './components/context/Box';
 
 function App() {
 
@@ -48,7 +53,14 @@ function App() {
           console.log('Button Clicked', event)
         }} />
         <Input value='' handleChange={event => console.log(event)} /> */}
-        <Container styles={{border: '1px solid black', padding: '1rem'}} />
+        {/* <Container styles={{border: '1px solid black', padding: '1rem'}} /> */}
+        {/* <LoggedIn /> */}
+        {/* <ThemecontextProvider>
+            <Box />
+        </ThemecontextProvider> */}
+        <UserContextProvider>
+          <User />
+        </UserContextProvider>
     </div>
   );
 }
