@@ -2,14 +2,20 @@ import React, { Component } from "react";
 import formatNumber from "format-number";
 import photographer from "./images/girl.png";
 import "./App.css";
+import reducer from "./reducers/Reducer";
+import { createStore } from "redux";
+
+
+const initialState = {
+  username: "Janny",
+  totalAmount: 2500701
+};
+const store = createStore(reducer, initialState)
 
 class App extends Component {
-  state = {
-    username: "Janny",
-    totalAmount: 2500701
-  };
+
   render() {
-    const { totalAmount, username } = this.state;
+    const { totalAmount, username } = store.getState()
     return (
       <div className="App">
         <img className="App__userpic" src={photographer} alt="user" />
