@@ -1,6 +1,14 @@
 import './App.css';
-import { UserContextProvider } from './components/context/UserContext';
-import { User } from './components/context/User';
+// import { CustomButton } from './components/html/Button';
+import { Text } from './components/polymorphic/Text';
+// import { RandomNumber } from './components/restriction/RandomNumber';
+// import { Toast } from './components/templateliterals/Toast';
+// import { Private } from './components/auth/Private';
+// import { Profile } from './components/auth/Profile';
+// import { List } from './components/generics/List';
+// import { Counter } from './components/class/Counter';
+// import { UserContextProvider } from './components/context/UserContext';
+// import { User } from './components/context/User';
 // import { Button } from './components/Button';
 // import { Container } from './components/Container';
 // import { LoggedIn } from './components/state/LoggedIn';
@@ -58,9 +66,46 @@ function App() {
         {/* <ThemecontextProvider>
             <Box />
         </ThemecontextProvider> */}
-        <UserContextProvider>
+        {/* <UserContextProvider>
           <User />
-        </UserContextProvider>
+        </UserContextProvider> */}
+        {/* <Counter message='The count value is'/> */}
+        {/* <Private isLoggedIn={true} component={Profile} /> */}
+        {/* <List 
+          items={['Batman', 'Superman', 'Wonder woman']} 
+          onClick={(item) => console.log(item)} 
+        />
+        <List items={[1, 2, 3]} onClick={(item) => console.log(item)} /> */}
+        {/* <List
+          items={[
+            {
+              id: 1,
+              first: 'Bruce',
+              last: 'Wayne',
+            },
+            {
+              id: 2,
+              first: 'Clark',
+              last: 'Kent',
+            },
+            {
+              id: 3,
+              first: 'Princess',
+              last: 'Diana',
+            },
+          ]}
+          onClick={(item) => console.log(item)}
+        /> */}
+        {/* <RandomNumber value={10} isPositive/> */}
+        {/* <Toast position='center' /> */}
+        {/* <CustomButton variant='primary' onClick={() => console.log('Clicked')}>
+            Primary Button
+        </CustomButton> */}
+        <Text as='h1' size='lg'>Heading</Text>
+        <Text as='p' size='md'>Paragraph</Text>
+        <Text as='label' htmlFor='someId' size='sm' color='secondary'> 
+          Label
+        </Text>
     </div>
   );
 }
