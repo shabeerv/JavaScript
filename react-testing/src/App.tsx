@@ -1,5 +1,5 @@
 import './App.css';
-import { Counter } from './components/Counter/Counter';
+// import { Counter } from './components/Counter/Counter';
 import { MuiMode } from './components/Mui/MuiMode';
 import { AppProviders } from './providers/AppProvider';
 // import { Application } from './components/application/application';
