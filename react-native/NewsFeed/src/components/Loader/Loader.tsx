@@ -1,12 +1,13 @@
 import React from 'react';
 import {ActivityIndicator} from 'react-native';
+import {useAppSelector} from '../../hooks/useAppSelector';
+import {isLoadingSelector} from '../../selectors/statusSelector';
+import {loadingList} from '../../helpers/ActionTracker';
 
-interface ILoaderProps {
-  show: boolean;
-}
+const Loader = () => {
+  const load = useAppSelector(state => isLoadingSelector(loadingList, state));
 
-const Loader: React.FC<ILoaderProps> = ({show}) => {
-  return <>{show && <ActivityIndicator size={'large'} color={'#000'} />}</>;
+  return <>{load && <ActivityIndicator size={'large'} color={'#000'} />}</>;
 };
 
 export default Loader;
