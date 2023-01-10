@@ -6,12 +6,12 @@ import {
   ScrollView,
   Text,
   TouchableOpacity,
-  useColorScheme,
   View,
 } from 'react-native';
 import {SharedElement} from 'react-navigation-shared-element';
 import {Back} from '../../assets';
 import styles from './styles';
+import {useAppTheme} from '../../hooks/useAppTheme';
 
 interface Route {
   params: {
@@ -35,10 +35,8 @@ const NewsDetails: React.FC<{route: Route}> = ({route}) => {
     navigation.goBack();
   }, [navigation]);
 
-  const backgroundColor = useColorScheme() === 'dark' ? '#000' : '#fff';
-  const color = useColorScheme() === 'dark' ? '#fff' : '#000';
-  const contentColor = useColorScheme() === 'dark' ? '#bbb' : '#444';
-  const readMoreBgColor = useColorScheme() === 'dark' ? '#222' : '#ddd';
+  const theme = useAppTheme();
+  const style = styles(theme);
 
   const handleURLPress = useCallback(() => {
     Linking.openURL(article?.url);
@@ -46,31 +44,28 @@ const NewsDetails: React.FC<{route: Route}> = ({route}) => {
 
   return (
     <>
-      <TouchableOpacity style={styles.crossContainer} onPress={goBack}>
-        <Image style={styles.cross} source={Back} />
+      <TouchableOpacity style={style.crossContainer} onPress={goBack}>
+        <Image style={style.cross} source={Back} />
       </TouchableOpacity>
       <ScrollView
         bounces={false}
         showsVerticalScrollIndicator={false}
-        style={[styles.container, {backgroundColor}]}
-        contentContainerStyle={styles.contentContainer}>
+        style={style.container}
+        contentContainerStyle={style.contentContainer}>
         <SharedElement id={`article#${articleIndex}-Image`}>
           <Image
-            style={styles.image}
+            style={style.image}
             source={{uri: article?.urlToImage ?? 'https://picsum.photos/1000'}}
             resizeMode={'cover'}
           />
         </SharedElement>
-        <Text style={[styles.title, {color}]}>{article?.title}</Text>
-        <Text style={[styles.content, {color: contentColor}]}>
-          {article?.content}
-        </Text>
+        <Text style={style.title}>{article?.title}</Text>
+        <Text style={style.content}>{article?.content}</Text>
       </ScrollView>
-      <View
-        style={[styles.readMoreContainer, {backgroundColor: readMoreBgColor}]}>
-        <Text style={[styles.readMoreText, {color}]} numberOfLines={2}>
+      <View style={style.readMoreContainer}>
+        <Text style={style.readMoreText} numberOfLines={2}>
           Read more at{' '}
-          <Text style={styles.link} onPress={handleURLPress}>
+          <Text style={style.link} onPress={handleURLPress}>
             {article?.url}
           </Text>
         </Text>

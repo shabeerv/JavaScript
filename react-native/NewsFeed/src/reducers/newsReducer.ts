@@ -17,7 +17,6 @@ const feedReducer = createReducer(initialState, builder => {
 
   builder.addCase(searchNews.fulfilled, (state, {payload}) => {
     state.searchResults = payload;
-    console.log('from newsReducer...');
   });
 
   builder.addCase(resetSearchResults, state => {

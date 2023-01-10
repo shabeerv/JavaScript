@@ -14,6 +14,7 @@ const Tag: React.FC<ITagProps> = ({
   setSelectedCategory,
 }) => {
   const textColor = useColorScheme() === 'dark' ? '#fff' : '#000';
+
   const handlePress = useCallback(() => {
     setSelectedCategory(category);
   }, [category, setSelectedCategory]);

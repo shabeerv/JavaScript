@@ -12,9 +12,8 @@ export const getNewsFeed = createAsyncThunk(
   actionTypes.GETNEWSFEED,
   async (category: string = NewsCategory.business, {rejectWithValue}) => {
     try {
-      const response = await apiClient.get(
-        `top-headlines?language=en&category=${category}`,
-      );
+      const URL = 'top-headlines?language=en&category=';
+      const response = await apiClient.get(`${URL}${category}`);
       if (response.status === 200) {
         return response?.data?.articles;
       } else {
@@ -31,9 +30,9 @@ export const searchNews = createAsyncThunk(
   actionTypes.SEARCHNEWS,
   async (searchTerm: string = '', {rejectWithValue}) => {
     try {
-      const response = await apiClient.get(`everything?q=${searchTerm}`);
+      const URL = 'everything?q=';
+      const response = await apiClient.get(`${URL}${searchTerm}`);
       if (response.status === 200) {
-        console.log('search.....');
         console.log(searchTerm);
         return response?.data?.articles;
       } else {

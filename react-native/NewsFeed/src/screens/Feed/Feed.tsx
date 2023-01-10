@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useCallback} from 'react';
-import {FlatList, RefreshControl, useColorScheme, View} from 'react-native';
+import {FlatList, RefreshControl, View} from 'react-native';
 import {actionTypes, getNewsFeed} from '../../actions/newsActions';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {useAppSelector} from '../../hooks/useAppSelector';
@@ -14,6 +14,9 @@ import {isLoadingSelector} from '../../selectors/statusSelector';
 import {NewsCategory} from '../../helpers/constants';
 import NewsTags from '../../components/NewsTags';
 import SearchInput from '../../components/SearchInput';
+// import {useTheme} from '@react-navigation/native';
+
+import {useAppTheme} from '../../hooks/useAppTheme';
 
 const Feed: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState(
@@ -29,6 +32,10 @@ const Feed: React.FC = () => {
     isLoadingSelector([actionTypes.GETNEWSFEED], state),
   );
 
+  // const  = useAppTheme();
+  const theme = useAppTheme();
+  const style = styles(theme);
+
   useEffect(() => {
     dispatch(getNewsFeed(selectedCategory));
   }, [dispatch, selectedCategory]);
@@ -37,10 +44,8 @@ const Feed: React.FC = () => {
     dispatch(getNewsFeed(selectedCategory));
   }, [dispatch, selectedCategory]);
 
-  const backgroundColor = useColorScheme() === 'dark' ? '#000' : '#fff';
-
   return (
-    <View style={[styles.container, {backgroundColor}]}>
+    <View style={style.container}>
       <SearchInput searchText={searchText} setSearchText={setSearchText} />
       {!searchText?.trim() && (
         <NewsTags
@@ -48,6 +53,7 @@ const Feed: React.FC = () => {
           setSelectedCategory={setSelectedCategory}
         />
       )}
+
       <FlatList
         keyExtractor={() => uuid.v4()?.toString()}
         showsVerticalScrollIndicator={false}
@@ -58,7 +64,7 @@ const Feed: React.FC = () => {
         refreshControl={
           <RefreshControl refreshing={isLoading} onRefresh={handleRefresh} />
         }
-        style={styles.list}
+        style={style.list}
       />
     </View>
   );

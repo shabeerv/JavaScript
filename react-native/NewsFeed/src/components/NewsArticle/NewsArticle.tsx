@@ -6,7 +6,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import {SharedElement} from 'react-navigation-shared-element';
 import styles from './styles';
 
-type Post = {
+export type Post = {
   title: string;
   urlToImage: string;
   publishedAt: string;
@@ -19,9 +19,11 @@ const NewsArticle: React.FC<{
   index: number;
 }> = ({post, index}) => {
   const navigation: any = useNavigation();
+
   const handleNavigate = useCallback(() => {
     navigation.navigate('NewsDetails', {article: post, articleIndex: index});
   }, [index, navigation, post]);
+
   return (
     <TouchableOpacity
       activeOpacity={1}
@@ -41,6 +43,7 @@ const NewsArticle: React.FC<{
           style={styles.image}
         />
       </SharedElement>
+
       <LinearGradient
         colors={['#0000', '#000A', '#000']}
         style={styles.titleContainer}>

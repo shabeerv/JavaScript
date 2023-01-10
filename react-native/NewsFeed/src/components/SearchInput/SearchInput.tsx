@@ -1,9 +1,10 @@
 import React, {useCallback} from 'react';
-import {TextInput, useColorScheme} from 'react-native';
+import {TextInput} from 'react-native';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {resetSearchResults, searchNews} from '../../actions/newsActions';
 import styles from './styles';
 import {debounce} from 'lodash';
+import {useAppTheme} from '../../hooks/useAppTheme';
 
 interface ISearchInputProps {
   searchText: string;
@@ -14,10 +15,10 @@ const SearchInput: React.FC<ISearchInputProps> = ({
   searchText,
   setSearchText,
 }) => {
-  const backgroundColor = useColorScheme() === 'dark' ? '#333' : '#ddd';
-  const placeholderColor = useColorScheme() === 'dark' ? '#eee' : '#111';
-  const color = useColorScheme() === 'dark' ? '#fff' : '#000';
   const dispatch = useAppDispatch();
+
+  const theme = useAppTheme();
+  const style = styles(theme);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const searchForText = useCallback(
@@ -34,8 +35,8 @@ const SearchInput: React.FC<ISearchInputProps> = ({
   return (
     <TextInput
       placeholder={'Search'}
-      placeholderTextColor={placeholderColor}
-      style={[styles.container, {backgroundColor, color}]}
+      placeholderTextColor={theme.colors.placeholderColor}
+      style={style.container}
       value={searchText}
       onChangeText={(text: string) => {
         setSearchText(text);
