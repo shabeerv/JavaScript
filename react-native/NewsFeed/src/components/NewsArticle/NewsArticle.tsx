@@ -6,7 +6,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import {SharedElement} from 'react-navigation-shared-element';
 import styles from './styles';
 
-export type Post = {
+type Post = {
   title: string;
   urlToImage: string;
   publishedAt: string;
@@ -18,6 +18,7 @@ const NewsArticle: React.FC<{
   post: Post;
   index: number;
 }> = ({post, index}) => {
+  console.log(post, index);
   const navigation: any = useNavigation();
 
   const handleNavigate = useCallback(() => {
@@ -34,16 +35,25 @@ const NewsArticle: React.FC<{
         id={`article#${index}-Image`}>
         <Image
           source={{
-            uri:
-              post?.urlToImage ??
-              `https://picsum.photos/${Math.floor(Math.random() * 1000)}`,
+            uri: post?.urlToImage
+              ? post?.urlToImage
+              : 'https://via.placeholder.com/150',
             cache: 'force-cache',
           }}
           resizeMode={'cover'}
           style={styles.image}
         />
       </SharedElement>
-
+      {/* <Image
+        source={{
+          uri: post?.urlToImage
+            ? post?.urlToImage
+            : 'https://via.placeholder.com/150',
+          cache: 'force-cache',
+        }}
+        resizeMode={'cover'}
+        style={styles.image}
+      /> */}
       <LinearGradient
         colors={['#0000', '#000A', '#000']}
         style={styles.titleContainer}>

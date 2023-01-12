@@ -33,7 +33,7 @@ export const searchNews = createAsyncThunk(
       const URL = 'everything?q=';
       const response = await apiClient.get(`${URL}${searchTerm}`);
       if (response.status === 200) {
-        console.log(searchTerm);
+        console.log(response.data.article);
         return response?.data?.articles;
       } else {
         console.warn('Something went wrong');

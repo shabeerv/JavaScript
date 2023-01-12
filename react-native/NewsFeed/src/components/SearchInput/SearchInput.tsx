@@ -15,6 +15,9 @@ const SearchInput: React.FC<ISearchInputProps> = ({
   searchText,
   setSearchText,
 }) => {
+  // const backgroundColor = useColorScheme() === 'dark' ? '#333' : '#ddd';
+  // const placeholderColor = useColorScheme() === 'dark' ? '#eee' : '#111';
+  // const color = useColorScheme() === 'dark' ? '#fff' : '#000';
   const dispatch = useAppDispatch();
 
   const theme = useAppTheme();
@@ -31,6 +34,8 @@ const SearchInput: React.FC<ISearchInputProps> = ({
     }, 1000),
     [setSearchText, dispatch],
   );
+
+  // console.log(searchForText('test'));
 
   return (
     <TextInput
